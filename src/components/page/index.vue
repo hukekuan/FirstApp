@@ -29,3 +29,10 @@ export default {
   },
 }
 </script>
+<style>
+  .logo {color: red;}
+  .list {
+    line-height: 2;
+  li {border-bottom: 1px solid #ddd;}
+  }
+</style>
