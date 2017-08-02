@@ -1,13 +1,12 @@
 <template>
-  <map></map>
+  <c3map></c3map>
 </template>
 
 <script>
-  import map from './page/map'
-
-  export  default {
-    components: {
-      map
-    }
-  };
+import c3map from './map'
+export default {
+  components: {
+    c3map
+   }
+}
 </script>

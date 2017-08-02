@@ -5,6 +5,7 @@
 <script>
   let ol = require('openlayers')
   require('openlayers/dist/ol.css')
+
   export default {
     name: 'map',
     props: {
@@ -17,11 +18,11 @@
         }
       }
     },
-    computed: {
-      id () {
-        return this.$options.name + '-' + this._uid
-      }
-    },
+//    computed: {
+//      id () {
+//        return this.$options.name + '-' + this._uid
+//      }
+//    },
     mounted () {
       this.map = new ol.Map({
         target: 'map',
@@ -34,7 +35,7 @@
           center: ol.proj.fromLonLat([51.22, 7.60]),
           zoom: 4
         })
-      })
+      });
     }
   }
 </script>
@@ -42,7 +43,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .ol-map{
-    height:500px;
-    width:500px;
+    height:100%;
+    width:100%;
+    margin: 0;
+    padding: 0;
   }
 </style>
