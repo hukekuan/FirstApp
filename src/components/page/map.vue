@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import Bus from '../../common/bus.js';
+
   let ol = require('openlayers')
   require('openlayers/dist/ol.css')
 
@@ -20,11 +20,7 @@
       }
     },
     mounted () {
-      Bus.$on("b-msg", function (a) {
-        alert("来自菜单的数据：" + a)
-      }.bind(this));
-
-      this.map = new ol.Map({
+      this.$store.state.map = new ol.Map({
         target: 'map',
         layers: [
           new ol.layer.Tile({

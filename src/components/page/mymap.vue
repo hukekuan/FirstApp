@@ -10,7 +10,6 @@ import Vue from 'vue'
 import c3map from './map'
 import menus from './menus'
 
-export var Hub = new Vue()
 export default {
   components: {
     c3map, menus
