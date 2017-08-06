@@ -5,12 +5,16 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import api from './config/api'
+import store from './store'
 Vue.prototype.$api = api
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+import './assets/css/style.css'
+
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: { App }

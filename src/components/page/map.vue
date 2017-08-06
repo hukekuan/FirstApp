@@ -3,6 +3,7 @@
 </template>
 
 <script>
+  import Bus from '../../common/bus.js';
   let ol = require('openlayers')
   require('openlayers/dist/ol.css')
 
@@ -18,12 +19,11 @@
         }
       }
     },
-//    computed: {
-//      id () {
-//        return this.$options.name + '-' + this._uid
-//      }
-//    },
     mounted () {
+      Bus.$on("b-msg", function (a) {
+        alert("来自菜单的数据：" + a)
+      }.bind(this));
+
       this.map = new ol.Map({
         target: 'map',
         layers: [
@@ -35,7 +35,7 @@
           center: ol.proj.fromLonLat([51.22, 7.60]),
           zoom: 4
         })
-      });
+      })
     }
   }
 </script>
@@ -43,6 +43,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .ol-map{
+    z-index: -1000;
     height:100%;
     width:100%;
     margin: 0;
