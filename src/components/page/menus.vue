@@ -1,7 +1,7 @@
 <template>
   <div class="button_content">
     <button id="dataLoad_btn" class="layui-btn layui-btn-normal"
-            v-on:click="dataLoad">数据加载</button>
+            v-on:click="dataLoad">还原</button>
     <button id="removeLayer_btn" class="layui-btn layui-btn-normal">移除图层</button>
     <button id="pointsLoad_btn" class="layui-btn layui-btn-normal">点数据加载</button>
     <button id="boxSelect_btn" class="layui-btn layui-btn-normal">框选</button>
@@ -28,7 +28,7 @@
 //        Bus.$emit("b-msg", this.a);
 //        alert(event.target.tagName)
         //console.log(this.$store.getters.done)
-        this.$store.commit('flytoLocation')
+        this.$store.commit('map/flytoLocation')
       }
     }
   }

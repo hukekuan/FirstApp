@@ -2,6 +2,10 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 // import Mint from './config/mintUi'
+//let ol = require('openlayers')
+//Vue.use(ol)
+// import ol from './config/openLayers'
+
 import App from './App'
 import router from './router'
 import api from './config/api'

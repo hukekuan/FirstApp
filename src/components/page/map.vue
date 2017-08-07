@@ -20,16 +20,56 @@
       }
     },
     mounted () {
-      this.$store.state.map = new ol.Map({
+      let projection = ol.proj.get("EPSG:4326");
+      let projectionExtent = projection.getExtent();
+      let size = ol.extent.getWidth(projectionExtent)/256;
+      let resolutions = new Array(20);
+      let matrixIds = new Array(14);
+      for (let z = 0; z < 20; z++) {
+        resolutions[z] = size/Math.pow(2,z);
+        matrixIds[z] = z;
+      };
+
+      this.$store.state.map.map = new ol.Map({
         target: 'map',
         layers: [
           new ol.layer.Tile({
-            source: new ol.source.OSM()
+            name: "vec",
+            source: new ol.source.WMTS({
+              url: 'http://t{0-6}.tianditu.com/vec_c/wmts',
+              layer: 'vec',
+              format: 'tiles',
+              tileGrid: new ol.tilegrid.WMTS({
+                origin: ol.extent.getTopLeft(projectionExtent),
+                resolutions: resolutions,
+                matrixIds: matrixIds
+              }),
+              matrixSet: "c",
+              style: 'default'
+            })
+          }),
+          new ol.layer.Tile({
+            name: "sd_xzq",
+            source: new ol.source.WMTS({
+              url: 'http://www.sdmap.gov.cn/tileservice/SDPubMap',
+              layer:'0',
+              format:'image/png',
+              tileGrid:new ol.tilegrid.WMTS({
+                origin: ol.extent.getTopLeft(projectionExtent),
+                resolutions: resolutions,
+                matrixIds: matrixIds
+              }),
+              matrixSet: "tianditu2013",
+              style: 'default'
+            })
           })
         ],
         view: new ol.View({
-          center: ol.proj.fromLonLat([51.22, 7.60]),
-          zoom: 4
+          center: [118.753859,36.309878],
+          projection:ol.proj.get("EPSG:4326"),
+          zoom: 8,
+          maxZoom:18,
+          minZoom:7
         })
       })
     }
