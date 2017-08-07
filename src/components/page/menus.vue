@@ -15,7 +15,6 @@
 </template>
 
 <script>
-//  import Bus from '../../common/bus.js';
   export default {
     name: 'menus',
     data () {
@@ -25,9 +24,6 @@
     },
     methods: {
       dataLoad: function (event) {
-//        Bus.$emit("b-msg", this.a);
-//        alert(event.target.tagName)
-        //console.log(this.$store.getters.done)
         this.$store.commit('map/flytoLocation')
       }
     }

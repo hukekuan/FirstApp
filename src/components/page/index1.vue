@@ -25,7 +25,7 @@ export default {
       v.$api.get('topics', params, function(r) {
         v.lists = r.data
       })
-    },
+    }
   },
 }
 </script>
