@@ -5,13 +5,13 @@ let ol = require('openlayers')
 
 // initial state
 const state = {
-  center: [118.753859,36.309878],
+  center: [118.753859, 36.309878],
   target: 'map',
-  projection:ol.proj.get("EPSG:4326"),
+  projection: ol.proj.get('EPSG:4326'),
   zoom: 8,
-  maxZoom:18,
-  minZoom:7,
-  map:{
+  maxZoom: 18,
+  minZoom: 7,
+  map: {
     type: Object,
     default: {}
   }
@@ -28,13 +28,13 @@ const actions = {
 // mutations
 const mutations = {
   initMap: function (state) {
-    let projection = ol.proj.get("EPSG:4326");
+    let projection = ol.proj.get('EPSG:4326');
     let projectionExtent = projection.getExtent();
-    let size = ol.extent.getWidth(projectionExtent)/256;
+    let size = ol.extent.getWidth(projectionExtent) / 256;
     let resolutions = new Array(20);
     let matrixIds = new Array(14);
     for (let z = 0; z < 20; z++) {
-      resolutions[z] = size/Math.pow(2,z);
+      resolutions[z] = size/Math.pow(2, z);
       matrixIds[z] = z;
     };
 
@@ -42,7 +42,7 @@ const mutations = {
       target: state.target,
       layers: [
         new ol.layer.Tile({
-          name: "vec",
+          name: 'vec',
           source: new ol.source.WMTS({
             url: 'http://t{0-6}.tianditu.com/vec_c/wmts',
             layer: 'vec',
@@ -52,23 +52,23 @@ const mutations = {
               resolutions: resolutions,
               matrixIds: matrixIds
             }),
-            matrixSet: "c",
+            matrixSet: 'c',
             style: 'default'
           })
         }),
         new ol.layer.Tile({
-          name: "sd_xzq",
+          name: 'sd_xzq',
           source: new ol.source.WMTS({
             url: 'http://www.sdmap.gov.cn/tileservice/SDPubMap',
-            layer:'0',
-            format:'image/png',
-            tileGrid:new ol.tilegrid.WMTS({
+            layer: '0',
+            format: 'image/png',
+            tileGrid: new ol.tilegrid.WMTS({
               origin: ol.extent.getTopLeft(projectionExtent),
               resolutions: resolutions,
               matrixIds: matrixIds
             }),
-            matrixSet: "tianditu2013",
-            style: 'default'
+            matrixSet: 'tianditu2013',
+            style: 'default'
           })
         })
       ],
@@ -84,9 +84,9 @@ const mutations = {
   flytoLocation (state) {
     state.map.getView().animate({
       center: state.center,
-      duration:200,
+      duration: 200,
       zoom: state.zoom,
-    },function () {
+    }, function () {
     })
   }
 

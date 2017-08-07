@@ -18,9 +18,7 @@
   export default {
     name: 'menus',
     data () {
-      return {
-        a: 'map中的数据'
-      }
+      return {}
     },
     methods: {
       dataLoad: function (event) {
