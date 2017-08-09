@@ -70,6 +70,21 @@ const mutations = {
             matrixSet: 'tianditu2013',
             style: 'default'
           })
+        }),
+        new ol.layer.Vector({
+          source: new ol.source.Vector({
+            url: 'http://localhost:8080/api/test',
+            format: new ol.format.GeoJSON()
+          }),
+          style: new ol.style.Style({
+            stroke: new ol.style.Stroke({
+              color: 'yellow',
+              width: 1
+            }),
+            fill: new ol.style.Fill({
+              color: 'rgba(255, 255, 0, 0.1)'
+            })
+          })
         })
       ],
       view: new ol.View({
