@@ -40,6 +40,7 @@ const mutations = {
 
     state.map = new ol.Map({
       target: state.target,
+      logo: false,
       layers: [
         new ol.layer.Tile({
           name: 'vec',

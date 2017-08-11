@@ -7,6 +7,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import map from './modules/map'
 import menus from './modules/menus'
+import chart from './modules/chart'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,6 @@ export default new Vuex.Store({
   actions,
   getters,
   modules: {
-    map,menus
+    map, menus, chart
   }
 })

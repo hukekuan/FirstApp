@@ -2,6 +2,7 @@
   <div class="mymap">
   <c3map></c3map>
   <menus></menus>
+  <echarts></echarts>
   </div>
 </template>
 
@@ -9,10 +10,11 @@
 import Vue from 'vue'
 import c3map from './map'
 import menus from './menus'
+import echarts from './echarts'
 
 export default {
   components: {
-    c3map, menus
+    c3map, menus,echarts
    }
 }
 </script>
