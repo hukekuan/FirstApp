@@ -38,6 +38,6 @@
     top: 15px;
     height: auto;
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3f000000',endColorstr='#3f000000');
-    background-color:rgba(255, 255, 255, 0.3)
+    background-color:rgba(255, 255, 255, 0)
   }
 </style>

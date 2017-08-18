@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import c3map from './map'
 import menus from './menus'
 import echarts from './echarts'
