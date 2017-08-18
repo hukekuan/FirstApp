@@ -2,7 +2,8 @@
   <div class="button_content">
     <button id="dataLoad_btn" class="layui-btn layui-btn-normal"
             v-on:click="dataLoad">还原</button>
-    <button id="removeLayer_btn" class="layui-btn layui-btn-normal">移除图层</button>
+    <button id="removeLayer_btn" class="layui-btn layui-btn-normal"
+            v-on:click="openLay">移除图层</button>
     <button id="pointsLoad_btn" class="layui-btn layui-btn-normal">点数据加载</button>
     <button id="boxSelect_btn" class="layui-btn layui-btn-normal">框选</button>
     <button id="featureSelect_btn" class="layui-btn layui-btn-normal">Feature选择</button>
@@ -23,6 +24,19 @@
     methods: {
       dataLoad: function (event) {
         this.$store.commit('map/flytoLocation')
+      },
+      openLay:function (event) {
+        layui.use('layer',function () {
+          layer.open({
+            type: 2,
+            area: ['550px', '450px'],
+            fixed: false,
+            maxmin: true,
+            shade:false,
+            offset: 'r',
+            content: './air'
+          });
+        })
       }
     }
   }
