@@ -18,4 +18,7 @@ export default {
   padding: 0;
   overflow: hidden;
 }
+.notify .notify-alert h2.notice-title{
+  width: 98%;
+}
 </style>

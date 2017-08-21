@@ -2,7 +2,7 @@
   <div class="c3gis">
   <c3map></c3map>
   <menus></menus>
-  <layer></layer>
+  <!--<layer></layer>-->
   <!--<echarts></echarts>-->
   </div>
 </template>

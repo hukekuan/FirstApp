@@ -16,27 +16,47 @@
 </template>
 
 <script>
+  import formComp from './form.vue';
+
   export default {
     name: 'menus',
     data () {
       return {}
     },
+    components: {
+      'base-form': formComp,
+    },
     methods: {
       dataLoad: function (event) {
         this.$store.commit('map/flytoLocation')
       },
-      openLay:function (event) {
-        layui.use('layer',function () {
-          layer.open({
-            type: 1,
-            area: ['550px', '450px'],
-            fixed: false,
-            maxmin: true,
-            shade:false,
-            offset: 'r',
-            content: './air'
-          });
-        })
+      openLay: function (event) {
+        this.$layer.open({
+          type: 2,
+          icon: 0,
+          shade: false,
+          content: {
+            content: formComp,
+            parent: this,
+            data: {
+              check: 'aaaaaaaaxxxx'
+            }
+          },
+          area: ['800px', '400px'],
+          title: 'asdasd'
+        });
+
+//        layui.use('layer',function () {
+//          layer.open({
+//            type: 1,
+//            area: ['550px', '450px'],
+//            fixed: false,
+//            maxmin: true,
+//            shade:false,
+//            offset: 'r',
+//            content: './air'
+//          });
+//        })
       }
     }
   }
