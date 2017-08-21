@@ -2,6 +2,7 @@
   <div class="c3gis">
   <c3map></c3map>
   <menus></menus>
+  <layer></layer>
   <!--<echarts></echarts>-->
   </div>
 </template>
@@ -9,11 +10,12 @@
 <script>
 import c3map from './map'
 import menus from './menus'
+import layer from './layer'
 //import echarts from './echarts'
 
 export default {
   components: {
-    c3map, menus
+    c3map, menus,layer
 //    ,echarts
    }
 }

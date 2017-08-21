@@ -28,7 +28,7 @@
       openLay:function (event) {
         layui.use('layer',function () {
           layer.open({
-            type: 2,
+            type: 1,
             area: ['550px', '450px'],
             fixed: false,
             maxmin: true,
