@@ -1,24 +1,10 @@
 <template>
-  <div id="app" class="app">
+  <div id="app">
     <router-view></router-view>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'app'
-}
-</script>
-
 <style>
-.app{
-  height:100%;
-  width:100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-.notify .notify-alert h2.notice-title{
-  width: 98%;
-}
+  @import "../static/css/main.css";
+  @import "../static/css/color-dark.css";     /*深色主题*/
+  /*@import "../static/css/theme-green/color-green.css";   浅绿色主题*/
 </style>
