@@ -92,7 +92,7 @@
   .sidebar{
     display: block;
     position: absolute;
-    width: 250px;
+    width: 220px;
     left: 0;
     top: 70px;
     bottom:0;
