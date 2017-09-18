@@ -2,7 +2,7 @@
   <div>
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item><i class="el-icon-setting"></i> 自述</el-breadcrumb-item>
+        <el-breadcrumb-item><i class="el-icon-setting"></i> 首页</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="ms-doc">
@@ -10,26 +10,19 @@
       <article>
         <h1>manage-system</h1>
         <h2>功能</h2>
-        <el-checkbox disabled checked>Element UI</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>登录/注销</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>表格</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>表单</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>图表</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>富文本编辑器</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>markdown编辑器</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>图片拖拽/裁剪上传</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>支持切换主题色</el-checkbox>
-        <br>
-        <el-checkbox disabled checked>列表拖拽排序</el-checkbox>
-        <br>
+        <el-checkbox disabled checked>权限管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>资源管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>地图服务管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>空间数据管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>地图样式管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>数据接口管理</el-checkbox>
+        <br><br>
+        <el-checkbox disabled checked>字典管理</el-checkbox>
       </article>
     </div>
   </div>

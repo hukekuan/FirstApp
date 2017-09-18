@@ -25,57 +25,60 @@
       return {
         items: [
           {
-            icon: 'el-icon-setting',
-            index: 'readme',
-            title: '自述'
+            icon: 'el-icon-menu',
+            index: 'main',
+            title: '首页'
           },
           {
             icon: 'el-icon-menu',
             index: '2',
-            title: '表格',
+            title: '权限管理',
             subs: [
               {
                 index: 'basetable',
-                title: '基础表格'
+                title: '用户管理'
               },
               {
                 index: 'vuetable',
-                title: 'Vue表格组件'
+                title: '角色管理'
+              },
+              {
+                index: 'vuetable',
+                title: '令牌管理'
               }
             ]
           },
           {
-            icon: 'el-icon-date',
+            icon: 'el-icon-menu',
             index: '3',
-            title: '表单',
+            title: '资源管理',
             subs: [
               {
                 index: 'baseform',
-                title: '基本表单'
+                title: '菜单管理'
               },
               {
                 index: 'vueeditor',
-                title: '编辑器'
+                title: '地图服务管理'
               },
               {
                 index: 'markdown',
-                title: 'markdown'
+                title: '空间数据管理'
               },
               {
                 index: 'upload',
-                title: '文件上传'
+                title: '地图样式管理'
+              },
+              {
+                index: 'upload',
+                title: '数据接口管理'
               }
             ]
           },
           {
-            icon: 'el-icon-star-on',
-            index: 'basecharts',
-            title: '图表'
-          },
-          {
-            icon: 'el-icon-upload2',
-            index: 'drag',
-            title: '拖拽'
+            icon: 'el-icon-menu',
+            index: '8',
+            title: '字典管理'
           }
         ]
       }
