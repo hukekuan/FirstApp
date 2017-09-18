@@ -7,13 +7,10 @@ Vue.use(ElementUI)
 
 import App from './App'
 import router from './router'
-// import api from './config/api'
 import axios from 'axios';
 import store from './store'
-// Vue.prototype.$api = api
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 import './assets/css/style.css'
 

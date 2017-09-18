@@ -20,8 +20,8 @@ export default new Router({
           component: resolve => require(['../components/page/Main.vue'],resolve)
         },
         {
-          path: '/basetable',
-          component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+          path: '/usermanage',
+          component: resolve => require(['../components/page/UserManage.vue'], resolve)
         },
         {
           path: '/vuetable',

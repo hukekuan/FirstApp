@@ -35,7 +35,7 @@
             title: '权限管理',
             subs: [
               {
-                index: 'basetable',
+                index: 'usermanage',
                 title: '用户管理'
               },
               {
