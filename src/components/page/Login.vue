@@ -37,16 +37,24 @@
       }
     },
     methods: {
-      submitForm(formName) {
-        const self = this;
+      submitForm (formName) {
+        const self = this
         self.$refs[formName].validate((valid) => {
           if (valid) {
-            self.$router.push('/main');
+            self.$axios.post('http://localhost:8080/tokenlogin',{
+              'username': 'root',
+              'password': '123'
+            }, function (data) {
+              alert(data)
+              self.$router.push('/main')
+            }, function (error) {
+              alert(error)
+            })
           } else {
-            console.log('error submit!!');
-            return false;
+            console.log('error submit!!')
+            return false
           }
-        });
+        })
       }
     }
   }
