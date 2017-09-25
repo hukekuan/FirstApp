@@ -42,7 +42,7 @@
         const self = this
         self.$refs[formName].validate((valid) => {
           if (valid) {
-            self.$axios.post('http://localhost:8080/tokenlogin',{
+            self.$axios.post(process.env.API_ROOT + '/tokenlogin',{
               'username': 'root',
               'password': '123'
             }).then((res) => {
