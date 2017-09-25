@@ -1,4 +1,4 @@
 module.exports = {
   NODE_ENV: '"production"',
-  API_ROOT: '"https://cnodejs.org/api/v1"'
+  API_ROOT: '"http://localhost:8080/api/"'
 }

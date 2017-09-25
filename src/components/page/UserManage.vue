@@ -188,6 +188,12 @@
 //        if(process.env.NODE_ENV === 'development'){
 //          self.url = '/ms/table/list';
 //        };
+
+        self.$axios.get(process.env.API_ROOT + '/user/userlist').then((res) =>{
+          console.log(res.data);
+        }).catch((error) => {
+          console.log(error)
+        })
         self.$axios.get(self.url, {page: self.cur_page}).then((res) => {
           self.tableData = res.data.list;
         })

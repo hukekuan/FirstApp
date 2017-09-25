@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
   export default {
     data: function(){
       return {
@@ -44,11 +45,10 @@
             self.$axios.post('http://localhost:8080/tokenlogin',{
               'username': 'root',
               'password': '123'
-            }, function (data) {
-              alert(data)
+            }).then((res) => {
+              const data = res.data;
+              Cookies.set('key', data.token)
               self.$router.push('/main')
-            }, function (error) {
-              alert(error)
             })
           } else {
             console.log('error submit!!')

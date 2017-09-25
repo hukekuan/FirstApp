@@ -2,10 +2,14 @@
  * Created by hukekuan on 2017/6/1.
  */
 // 配置API接口地址
-var root = process.env.API_ROOT
+let root = process.env.API_ROOT
 // 引用superagent
-var axios = require('axios')
+let axios = require('axios')
 // 自定义判断元素类型JS
+
+axios.defaults.withCredentials = true
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
 function toType (obj){
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
 }
@@ -37,8 +41,10 @@ function apiAxios (method, url, params, success, failure) {
     url: url,
     data: method === 'POST' || method === 'PUT' ? params : null,
     params: method === 'GET' || method === 'DELETE' ? params : null,
-    baseURL: root,
-    withCredentials: false
+    //baseURL: root,
+    withCredentials: true,
+    timeout: 1000,
+    headers: method === 'POST' ? { 'Content-Type': 'application/x-www-form-urlencoded'} : {}
   })
     .then(function (res) {
       if (res.data.success === true) {
