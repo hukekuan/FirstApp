@@ -10,7 +10,8 @@ const user = {
     code: '',
     token: getToken(),
     name: '',
-    roles: []
+    userList: [],
+    roleList: []
   },
   mutations: {
     SET_CODE: (state, code) => {
@@ -22,9 +23,18 @@ const user = {
     SET_NAME: (state, name) => {
       state.name = name
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
+    SET_USERS: (state, roleList) => {
+      state.userList = roleList
+    },
+    SET_ROLES: (state, roleList) => {
+      state.roleList = roleList
     }
+  },
+  actions: {
+    GetUserList({ commit, state }) {
+
+    }
+
   }
 
 }
