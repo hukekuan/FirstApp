@@ -3,8 +3,8 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
-import * as getters from './getters'
+import actions from './actions'
+import getters from './getters'
 import user from './modules/user'
 // import map from './modules/map'
 // import menus from './modules/menus'
@@ -13,10 +13,10 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  actions,
-  getters,
   modules: {
     // map, menus, chart
     user
-  }
+  },
+  actions,
+  getters
 })

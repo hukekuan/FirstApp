@@ -21,11 +21,11 @@
 
     <el-table :data="data" border style="width: 100%" ref="multipleTable" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="date" label="日期" sortable width="150">
+      <el-table-column prop="id" label="用户ID" width="350">
       </el-table-column>
-      <el-table-column prop="name" label="姓名" width="120">
+      <el-table-column prop="username" label="用户名" width="170">
       </el-table-column>
-      <el-table-column prop="address" label="地址" :formatter="formatter">
+      <el-table-column prop="phonenumber" label="手机号" :formatter="formatter">
       </el-table-column>
       <el-table-column label="操作" width="180">
         <template scope="scope">
@@ -52,14 +52,14 @@
           <el-input v-model="adduser_form.username" auto-complete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="密码：" prop="pass">
-          <el-input type="password" v-model="adduser_form.pass" auto-complete="off"></el-input>
+        <el-form-item label="密码：" prop="password">
+          <el-input type="password" v-model="adduser_form.password" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码：" prop="checkPass">
-          <el-input type="password" v-model="adduser_form.checkPass" auto-complete="off"></el-input>
+        <el-form-item label="确认密码：" prop="checkpass">
+          <el-input type="password" v-model="adduser_form.checkpass" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="年龄：" prop="age">
-          <el-input v-model.number="adduser_form.age"></el-input>
+        <el-form-item label="手机号：" prop="phonenumber">
+          <el-input v-model.number="adduser_form.phonenumber"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -122,7 +122,7 @@
       };
       return {
         url: './static/vuetable.json',
-        tableData: [],
+        tableData1: [],
         cur_page: 1,
         multipleSelection: [],
         select_cate: '',
@@ -130,10 +130,11 @@
         del_list: [],
         is_search: false,
         adduser_form: {
+          id: '',
           username: '',
-          pass: '',
-          checkPass: '',
-          age: ''
+          password: '',
+          checkpass: '',
+          phonenumber: ''
         },
         formRules: {
           username:[
@@ -153,56 +154,33 @@
         formLabelWidth: '90px'
       }
     },
-    created() {
+    created () {
       this.getData();
     },
     computed: {
-      data(){
-        const self = this;
-        return self.tableData.filter(function(d){
-          let is_del = false;
-          for (let i = 0; i < self.del_list.length; i++) {
-            if(d.name === self.del_list[i].name){
-              is_del = true;
-              break;
-            }
-          }
-          if(!is_del){
-            if(d.address.indexOf(self.select_cate) > -1 &&
-              (d.name.indexOf(self.select_word) > -1 ||
-              d.address.indexOf(self.select_word) > -1)
-            ){
-              return d;
-            }
-          }
-        })
+      data () {
+        const self = this
+        return self.$store.getters.userList1
       }
     },
     methods: {
+      // 分页
       handleCurrentChange (val) {
         this.cur_page = val;
         this.getData();
       },
+      // 获取数据源
       getData () {
-        let self = this;
-//        if(process.env.NODE_ENV === 'development'){
-//          self.url = '/ms/table/list';
-//        };
-
-        self.$axios.get(process.env.API_ROOT + '/user/userlist').then((res) =>{
-          console.log(res.data);
-        }).catch((error) => {
-          console.log(error)
-        })
-        self.$axios.get(self.url, {page: self.cur_page}).then((res) => {
-          self.tableData = res.data.list;
-        })
+        let self = this
+        self.$store.dispatch('GetUserList')
       },
+      // 查询按钮触发事件
       search () {
         this.is_search = true;
       },
+      // 手机号formatter
       formatter (row, column) {
-        return row.address;
+        return row.phonenumber;
       },
       filterTag (value, row) {
         return row.tag === value;
@@ -236,6 +214,7 @@
             alert('submit!');
             this.$refs[formName].resetFields();
             this.addUserFormVisible = false;
+
           } else {
             console.log('error submit!!');
             return false;
@@ -250,6 +229,11 @@
 </script>
 
 <style scoped>
+  /*.dialog-footer{*/
+    /*padding: 0px 20px 15px;*/
+    /*text-align: right;*/
+    /*box-sizing: border-box;*/
+  /*}*/
   .handle-box{
     margin-bottom: 20px;
   }

@@ -1,17 +1,21 @@
 /**
  * Created by hukekuan on 2017/9/25.
  */
-import { getToken, setToken, removeToken } from '@/common/auth'
+// import { getToken, setToken, removeToken } from '@/common/auth'
+import { GetUserList } from '@/api/usermanage'
 
 const user = {
   state: {
     user: '',
     status: '',
     code: '',
-    token: getToken(),
+    // token: getToken(),
     name: '',
     userList: [],
     roleList: []
+  },
+  getters: {
+    userList: state => state.userList
   },
   mutations: {
     SET_CODE: (state, code) => {
@@ -32,7 +36,11 @@ const user = {
   },
   actions: {
     GetUserList({ commit, state }) {
-
+      GetUserList().then((res) => {
+        commit('SET_USERS', res.data)
+      }).catch((error) => {
+        console.log(error)
+      })
     }
 
   }
