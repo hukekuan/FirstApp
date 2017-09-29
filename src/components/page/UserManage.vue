@@ -72,57 +72,55 @@
 
 <script>
   export default {
-    data() {
+    data () {
       let validateUserName = (rule, value, callback) => {
-        if(value === ''){
-          callback(new Error('请输入用户名'));
+        if (value === '') {
+          callback(new Error('请输入用户名'))
         }
         setTimeout(() => {
-          if(value.length < 6){
-            callback(new Error('用户名至少6个字符'));
-          }else {
-            callback();
+          if (value.length < 6) {
+            callback(new Error('用户名至少6个字符'))
+          } else {
+            callback()
           }
-        });
-      };
+        })
+      }
       let validatePass = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入密码'));
+          callback(new Error('请输入密码'))
         } else {
-          if (this.adduser_form.checkPass !== '') {
-            this.$refs.adduser_form.validateField('checkPass');
+          if (this.adduser_form.checkpass !== '') {
+            this.$refs.adduser_form.validateField('checkpass')
           }
-          callback();
+          callback()
         }
-      };
+      }
       let validatePass2 = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入密码'));
-        } else if (value !== this.adduser_form.pass) {
-          callback(new Error('两次输入密码不一致!'));
+          callback(new Error('请再次输入密码'))
+        } else if (value !== this.adduser_form.password) {
+          callback(new Error('两次输入密码不一致!'))
         } else {
-          callback();
+          callback()
         }
-      };
-      let checkAge = (rule, value, callback) => {
+      }
+      let checkPhoneNumber = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('年龄不能为空'));
+          return callback(new Error('手机号不能为空'))
         }
         setTimeout(() => {
           if (!Number.isInteger(value)) {
-            callback(new Error('请输入数字值'));
+            callback(new Error('手机号输入错误'))
           } else {
-            if (value < 18) {
-              callback(new Error('必须年满18岁'));
+            if (value.length !== 11) {
+              callback(new Error('手机号格式错误'))
             } else {
-              callback();
+              callback()
             }
           }
-        }, 1000);
-      };
+        }, 1000)
+      }
       return {
-        url: './static/vuetable.json',
-        tableData1: [],
         cur_page: 1,
         multipleSelection: [],
         select_cate: '',
@@ -137,17 +135,17 @@
           phonenumber: ''
         },
         formRules: {
-          username:[
+          username: [
             { validator: validateUserName, trigger: 'blur' }
           ],
-          pass: [
+          password: [
             { validator: validatePass, trigger: 'blur' }
           ],
-          checkPass: [
+          checkpass: [
             { validator: validatePass2, trigger: 'blur' }
           ],
-          age: [
-            { validator: checkAge, trigger: 'blur' }
+          phonenumber: [
+            { validator: checkPhoneNumber, trigger: 'blur' }
           ]
         },
         addUserFormVisible: false,
@@ -155,7 +153,7 @@
       }
     },
     created () {
-      this.getData();
+      this.getData()
     },
     computed: {
       data () {
@@ -192,37 +190,37 @@
         this.$message.error('删除第' + (index+1) + '行');
       },
       delAll () {
-        const self = this, length = self.multipleSelection.length;
-        let str = '';
-        self.del_list = self.del_list.concat(self.multipleSelection);
+        const self = this, length = self.multipleSelection.length
+        let str = ''
+        self.del_list = self.del_list.concat(self.multipleSelection)
         for (let i = 0; i < length; i++) {
-          str += self.multipleSelection[i].name + ' ';
+          str += self.multipleSelection[i].name + ' '
         }
-        self.$message.error('删除了'+str);
-        self.multipleSelection = [];
+        self.$message.error('删除了' + str)
+        self.multipleSelection = []
       },
       handleSelectionChange (val) {
-        this.multipleSelection = val;
+        this.multipleSelection = val
       },
       addOne (formName) {
         this.addUserFormVisible = true
       },
 
-      submitForm(formName) {
+      submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
-            this.$refs[formName].resetFields();
-            this.addUserFormVisible = false;
+            alert('submit!')
+            this.$refs[formName].resetFields()
+            this.addUserFormVisible = false
 
           } else {
-            console.log('error submit!!');
-            return false;
+            console.log('error submit!!')
+            return false
           }
-        });
+        })
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+      resetForm (formName) {
+        this.$refs[formName].resetFields()
       }
     }
   }
