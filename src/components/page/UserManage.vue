@@ -36,11 +36,14 @@
         </template>
       </el-table-column>
     </el-table>
+
     <div class="pagination">
       <el-pagination
         @current-change ="handleCurrentChange"
         layout="prev, pager, next"
-        :total="1000">
+        :current-page="cur_page"
+        :page-size="pagesize"
+        :total="userCount">
       </el-pagination>
     </div>
 
@@ -112,15 +115,17 @@
           if (!Number.isInteger(value)) {
             callback(new Error('手机号输入错误'))
           } else {
-            if (value.length !== 11) {
-              callback(new Error('手机号格式错误'))
-            } else {
-              callback()
-            }
+            callback()
+//            if (value.length !== 11) {
+//              callback(new Error('手机号格式错误'))
+//            } else {
+//              callback()
+//            }
           }
         }, 1000)
       }
       return {
+        pagesize: 5,
         cur_page: 1,
         multipleSelection: [],
         select_cate: '',
@@ -157,40 +162,43 @@
     },
     computed: {
       data () {
-        const self = this
-        return self.$store.getters.userList1
+        return this.$store.getters.userList
+      },
+      userCount () {
+        return this.$store.getters.userCount
       }
     },
     methods: {
       // 分页
       handleCurrentChange (val) {
-        this.cur_page = val;
-        this.getData();
+        this.cur_page = val
+        this.getData()
       },
       // 获取数据源
       getData () {
         let self = this
-        self.$store.dispatch('GetUserList')
+        self.$store.dispatch('GetUserList', {pagesize: this.pagesize, currentpage: this.cur_page})
       },
       // 查询按钮触发事件
       search () {
-        this.is_search = true;
+        this.is_search = true
       },
       // 手机号formatter
       formatter (row, column) {
-        return row.phonenumber;
+        return row.phonenumber
       },
       filterTag (value, row) {
-        return row.tag === value;
+        return row.tag === value
       },
       handleEdit (index, row) {
-        this.$message('编辑第' + (index+1) + '行');
+        this.$message('编辑第' + (index + 1) + '行')
       },
       handleDelete (index, row) {
-        this.$message.error('删除第' + (index+1) + '行');
+        this.$store.dispatch('RemoveUser', row.id)
+//        this.$message.error('删除第' + (index + 1) + '行')
       },
       delAll () {
-        const self = this, length = self.multipleSelection.length
+        let self = this, length = self.multipleSelection.length
         let str = ''
         self.del_list = self.del_list.concat(self.multipleSelection)
         for (let i = 0; i < length; i++) {
@@ -209,10 +217,12 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!')
-            this.$refs[formName].resetFields()
-            this.addUserFormVisible = false
+            this.$store.dispatch('AddUser', this.adduser_form).then((res) => {
+              this.$refs[formName].resetFields()
+              this.addUserFormVisible = false
 
+              this.cur_page = 1
+            })
           } else {
             console.log('error submit!!')
             return false

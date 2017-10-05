@@ -10,6 +10,15 @@ const service = axios.create({
   timeout: 5000                  // 请求超时时间
 })
 
+service.interceptors.request.use(config => {
+  config.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
+  return config
+}, error => {
+  // Do something with request error
+  console.log(error) // for debug
+  //Promise.reject(error)
+})
+
 service.interceptors.response.use(
   response => response,
   error => {
