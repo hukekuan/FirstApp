@@ -53,10 +53,10 @@ const user = {
         }
       })
     },
-    RemoveUser ({ dispatch, state }, userid) {
-      RemoveUser(userid).then((res) => {
+    RemoveUser ({ dispatch, state }, deleteUser) {
+      RemoveUser(deleteUser.userids).then((res) => {
         if (res.data.hasOwnProperty('status') && res.data.status === 'OK') {
-          dispatch('GetUserList', {pagesize: 5, currentpage: 1})
+          dispatch('GetUserList', {pagesize: 5, currentpage: deleteUser.page})
         }
       })
     }

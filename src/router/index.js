@@ -25,6 +25,10 @@ export default new Router({
           component: resolve => require(['../components/page/UserManage.vue'], resolve)
         },
         {
+          path: '/menu',
+          component: resolve => require(['../components/page/MenuManage.vue'], resolve)
+        },
+        {
           path: '/vuetable',
           component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
         },

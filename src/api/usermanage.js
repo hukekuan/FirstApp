@@ -19,11 +19,10 @@ export function AddUser (userInfo) {
   })
 }
 
-export function RemoveUser (userId) {
-  console.log('userId ==> ' + userId)
+export function RemoveUser (userIds) {
   return fetch({
     url: process.env.API_ROOT + '/user/userremove',
     method: 'post',
-    data: qs.stringify({userids: [userId]})
+    data: qs.stringify({userids: userIds})
   })
 }

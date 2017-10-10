@@ -9,10 +9,11 @@
     <div class="handle-box">
       <el-button type="primary" icon="plus" class="handle-del mr10" @click="addOne('adduser_form')">新增</el-button>
       <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
+      <!--
       <el-select v-model="select_cate" placeholder="筛选省份" class="handle-select mr10">
         <el-option key="1" label="广东省" value="广东省"></el-option>
         <el-option key="2" label="湖南省" value="湖南省"></el-option>
-      </el-select>
+      </el-select>-->
       <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
       <el-button type="primary" icon="search" @click="search">搜索</el-button>
     </div>
@@ -194,18 +195,19 @@
         this.$message('编辑第' + (index + 1) + '行')
       },
       handleDelete (index, row) {
-        this.$store.dispatch('RemoveUser', row.id)
-//        this.$message.error('删除第' + (index + 1) + '行')
+        this.$store.dispatch('RemoveUser', {userids: [row.id], page: this.cur_page})
       },
       delAll () {
         let self = this, length = self.multipleSelection.length
-        let str = ''
-        self.del_list = self.del_list.concat(self.multipleSelection)
-        for (let i = 0; i < length; i++) {
-          str += self.multipleSelection[i].name + ' '
+        if (length > 0) {
+          self.del_list = []
+          for (let i = 0; i < length; i++) {
+            self.del_list.push(self.multipleSelection[i].id)
+          }
+          this.$store.dispatch('RemoveUser', {userids: self.del_list, page: this.cur_page})
+
+          self.multipleSelection = []
         }
-        self.$message.error('删除了' + str)
-        self.multipleSelection = []
       },
       handleSelectionChange (val) {
         this.multipleSelection = val

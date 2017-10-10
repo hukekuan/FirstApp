@@ -54,23 +54,23 @@
             title: '资源管理',
             subs: [
               {
-                index: 'baseform',
+                index: 'menu',
                 title: '菜单管理'
               },
               {
-                index: 'vueeditor',
+                index: 'mapservice',
                 title: '地图服务管理'
               },
               {
-                index: 'markdown',
+                index: 'spatialdata',
                 title: '空间数据管理'
               },
               {
-                index: 'upload',
+                index: 'layerstle',
                 title: '地图样式管理'
               },
               {
-                index: 'upload',
+                index: 'serviceapi',
                 title: '数据接口管理'
               }
             ]
