@@ -1,25 +1,48 @@
 <template>
-  <div class="table">
-    <div class="crumbs">
+  <div>
+    <div class="crumbs title">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item><i class="el-icon-menu"></i> 资源管理</el-breadcrumb-item>
         <el-breadcrumb-item>菜单管理</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="handle-box">
-      <el-button type="primary" icon="plus" class="handle-del mr10" @click="addOne('adduser_form')">新增</el-button>
-      <el-button type="primary" icon="delete" class="handle-del mr10" @click="delAll">批量删除</el-button>
-      <el-input v-model="select_word" placeholder="筛选关键词" class="handle-input mr10"></el-input>
-      <el-button type="primary" icon="search" @click="search">搜索</el-button>
-    </div>
-    <el-tree
-      :data="data2"
-      show-checkbox
-      node-key="id"
-      :default-expanded-keys="[1, 2, 3, 4]"
-      :default-checked-keys="[]"
-      :props="defaultProps">
-    </el-tree>
+
+  <el-row :gutter="20">
+    <el-col :span="8">
+        <div class="handle-box">
+            <el-breadcrumb separator="|">
+              <el-breadcrumb-item><i class="el-icon-plus"></i> 新增</el-breadcrumb-item>
+              <el-breadcrumb-item><i class="el-icon-edit"></i> 编辑</el-breadcrumb-item>
+              <el-breadcrumb-item><i class="el-icon-delete"></i> 删除</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <el-tree
+          :data="dataSystem"
+          show-checkbox
+          node-key="id"
+          :default-expanded-keys="[1, 4, 9, 11,12]"
+          :default-checked-keys="[]"
+          :props="defaultProps">
+        </el-tree>
+    </el-col>
+    <el-col :span="16">
+        <div class="handle-box">
+          <el-breadcrumb separator="|">
+            <el-breadcrumb-item><i class="el-icon-plus"></i> 新增</el-breadcrumb-item>
+            <el-breadcrumb-item><i class="el-icon-edit"></i> 编辑</el-breadcrumb-item>
+            <el-breadcrumb-item><i class="el-icon-delete"></i> 删除</el-breadcrumb-item>
+          </el-breadcrumb>
+        </div>
+        <el-tree
+          :data="dataMenu"
+          show-checkbox
+          node-key="id"
+          :default-expanded-keys="[1, 2, 3, 4]"
+          :default-checked-keys="[]"
+          :props="defaultProps">
+        </el-tree>
+    </el-col>
+  </el-row>
   </div>
 </template>
 
@@ -27,41 +50,43 @@
   export default {
     data () {
       return {
-        data2: [{
+        dataSystem: [{
           id: 1,
-          label: '一级 1',
+          label: '系统根节点',
+          disabled: true,
           children: [{
             id: 4,
-            label: '二级 1-1',
+            label: '基础数据库共享',
+            disabled: true
+          },{
+            id: 9,
+            label: '用户自定义系统',
             children: [{
-              id: 9,
-              label: '三级 1-1-1'
-            }, {
-              id: 10,
-              label: '三级 1-1-2'
+              id: 11,
+              label: '管理员自定义子系统'
+            }]
+          },{
+            id: 12,
+            label: '通用系统',
+            children:[{
+              id: 13,
+              label: '钻孔数据库'
+            },{
+              id: 14,
+              label: '地质矿产网格化管理系统'
+            },{
+              id: 15,
+              label: '地质资料集群化产业化服务系统'
+            },{
+              id: 16,
+              label: '房产管理地理信息系统'
+            },{
+              id: 17,
+              label: '青州地质矿产管理系统'
             }]
           }]
-        }, {
-          id: 2,
-          label: '一级 2',
-          children: [{
-            id: 5,
-            label: '二级 2-1'
-          }, {
-            id: 6,
-            label: '二级 2-2'
-          }]
-        }, {
-          id: 3,
-          label: '一级 3',
-          children: [{
-            id: 7,
-            label: '二级 3-1'
-          }, {
-            id: 8,
-            label: '二级 3-2'
-          }]
         }],
+        dataMenu: [],
         defaultProps: {
           children: 'children',
           label: 'label'
@@ -78,19 +103,26 @@
 </script>
 
 <style scoped>
+  .el-row {
+    margin-bottom: 8px;
+  }
   /*.dialog-footer{*/
     /*padding: 0px 20px 15px;*/
     /*text-align: right;*/
     /*box-sizing: border-box;*/
   /*}*/
   .handle-box{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .handle-select{
     width: 120px;
   }
   .handle-input{
-    width: 200px;
+    width: 180px;
     display: inline-block;
+  }
+  .title{
+    background: #f9fafc;
+    padding: 10px 0;
   }
 </style>
